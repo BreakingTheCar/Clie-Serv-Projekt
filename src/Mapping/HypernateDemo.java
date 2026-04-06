@@ -6,13 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.List;
 
-/**
- * Übung 3 – Aufgabe 4/5: Hibernate O/R-Mapping Demo
- *
- * Vergleich zu JDBC:123
- *   JDBC:      SQL-Strings manuell schreiben, ResultSet manuell auswerten
- *   Hibernate: Java-Objekte speichern/laden, kein SQL nötig
- */
+
 public class HypernateDemo {
 
     // SessionFactory einmal erstellen – ist teuer, wird wiederverwendet

@@ -3,10 +3,7 @@ package Mapping;
 import jakarta.persistence.*;
 import java.util.List;
 
-/**
- * Entity-Klasse für die Tabelle BUCH.
- * Hibernate mappt diese Klasse automatisch auf die Tabelle.
- */
+
 @Entity
 @Table(name = "buch")
 public class Buch {
