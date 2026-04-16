@@ -1,4 +1,4 @@
-package Mapping;
+package model;
 
 import jakarta.persistence.*;
 
