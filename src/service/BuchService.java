@@ -4,7 +4,7 @@ import model.Buch;
 import repository.BuchRepository;
 
 import java.util.List;
-//bsp Service
+
 public class BuchService {
     private BuchRepository repo = new BuchRepository();
 
