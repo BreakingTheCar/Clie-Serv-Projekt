@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
 *.xml
+Clie-Serv-Projekt.iml
 
 # Log file
 *.log
