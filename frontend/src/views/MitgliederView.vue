@@ -9,8 +9,21 @@
             <div class="list-info">{{ m.name }}</div>
             <div class="list-sub">{{ m.email }}</div>
           </div>
+          <div class="btn-group">
+            <button class="btn btn-info" @click="bearbeiten(m)">Bearbeiten</button>
+          </div>
         </li>
       </ul>
+    </div>
+
+    <div v-if="editMitglied" class="card">
+      <h3>Mitglied bearbeiten</h3>
+      <div class="form-row">
+        <input v-model="editMitglied.name" placeholder="Name"/>
+        <input v-model="editMitglied.email" placeholder="Email"/>
+        <button class="btn btn-primary" @click="updateMitglied">Speichern</button>
+        <button class="btn btn-danger" @click="editMitglied = null">Abbrechen</button>
+      </div>
     </div>
 
     <div class="card">
@@ -46,6 +59,7 @@ export default {
       mitglieder: [],
       aktiveMitglieder: [],
       suche: '',
+      editMitglied: null,
       neu: { name: '', email: '' }
     }
   },
@@ -63,6 +77,18 @@ export default {
     async load() {
       const res = await fetch(`${BASE}/mitglieder`)
       this.mitglieder = await res.json()
+    },
+    bearbeiten(m) {
+      this.editMitglied = { ...m }
+    },
+    async updateMitglied() {
+      await fetch(`${BASE}/mitglieder`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.editMitglied)
+      })
+      this.editMitglied = null
+      await this.load()
     },
     async addMitglied() {
       await fetch(`${BASE}/mitglieder`, {
