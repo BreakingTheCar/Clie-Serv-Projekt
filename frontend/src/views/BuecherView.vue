@@ -9,7 +9,6 @@
             <div class="list-info">{{ b.titel }}</div>
             <div class="list-sub">{{ b.autor }} · <span class="badge badge-blue">{{ b.kategorie }}</span></div>
           </div>
-          <button class="btn btn-danger" @click="deleteBuch(b.isbn)">Löschen</button>
         </li>
       </ul>
     </div>
@@ -87,10 +86,6 @@ export default {
         body: JSON.stringify({ ...this.neu, isbn: Number(this.neu.isbn) })
       })
       this.neu = { isbn: '', titel: '', autor: '', kategorie: '' }
-      await this.load()
-    },
-    async deleteBuch(isbn) {
-      await fetch(`${BASE}/buecher/${isbn}`, { method: 'DELETE' })
       await this.load()
     },
     async filterByRegal() {

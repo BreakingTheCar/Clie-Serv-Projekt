@@ -1,12 +1,14 @@
 package service;
 
 import model.Regal;
+import repository.ExemplarRepository;
 import repository.RegalRepository;
 
 import java.util.List;
 
 public class RegalService {
     private RegalRepository repo = new RegalRepository();
+    private ExemplarRepository exemplarRepo = new ExemplarRepository();
 
     public void addRegal(Regal regal) {
         repo.save(regal);
@@ -25,9 +27,15 @@ public class RegalService {
     }
 
     public void deleteRegal(Integer id) {
-        Regal r = repo.findById(id);
-        if (r != null) {
-            repo.delete(r);
+        Regal regal = repo.findById(id);
+        if (regal == null) {
+            throw new RuntimeException("Regal nicht gefunden.");
         }
+        if (!exemplarRepo.findByRegalId(id).isEmpty()) {
+            throw new RuntimeException(
+                    "Regal kann nicht gelöscht werden, da sich noch Exemplare darin befinden."
+            );
+        }
+        repo.delete(regal);
     }
 }

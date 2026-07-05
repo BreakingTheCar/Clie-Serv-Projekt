@@ -10,7 +10,6 @@
           </div>
           <div class="btn-group">
             <button class="btn btn-info" @click="zeigeUmzug(e.exemplarID)">Umziehen</button>
-            <button class="btn btn-danger" @click="deleteExemplar(e.exemplarID)">Löschen</button>
           </div>
         </li>
       </ul>
@@ -105,10 +104,6 @@ export default {
       })
       this.neuesBuch = ''
       this.neuesRegalAdd = ''
-      await this.load()
-    },
-    async deleteExemplar(id) {
-      await fetch(`${BASE}/exemplare/${id}`, { method: 'DELETE' })
       await this.load()
     },
     zeigeUmzug(id) {

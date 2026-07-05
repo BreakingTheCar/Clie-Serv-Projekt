@@ -1,0 +1,96 @@
+//BuchController
+GET http://localhost:8080/bibliothek/api/buecher
+###
+POST http://localhost:8080/bibliothek/api/buecher
+Content-Type: application/json
+
+{
+  "isbn":9999999999997,
+  "titel":"REST Test",
+  "autor":"ChatGPT",
+  "kategorie":"Testing"
+}
+###
+POST http://localhost:8080/bibliothek/api/buecher
+Content-Type: application/json
+
+{
+  "isbn":9999999999997,
+  "titel":"REST Test",
+  "autor":"ChatGPT",
+  "kategorie":"Testing"
+}
+###
+DELETE http://localhost:8080/bibliothek/api/buecher/9999999999997
+###
+//ExemplarController
+GET http://localhost:8080/bibliothek/api/exemplare
+###
+GET http://localhost:8080/bibliothek/api/exemplare/available
+###
+GET http://localhost:8080/bibliothek/api/exemplare/regal/1
+###
+PUT http://localhost:8080/bibliothek/api/exemplare/move/4/2
+###
+PUT http://localhost:8080/bibliothek/api/exemplare/move/999/2
+###
+//MitgliedController
+GET http://localhost:8080/bibliothek/api/mitglieder
+###
+GET http://localhost:8080/bibliothek/api/mitglieder/1
+###
+GET http://localhost:8080/bibliothek/api/mitglieder/name/Max Mustermann
+###
+GET http://localhost:8080/bibliothek/api/mitglieder/email/max@student.hwr-berlin.de
+###
+POST http://localhost:8080/bibliothek/api/mitglieder
+Content-Type: application/json
+
+{
+  "name":"Sarah",
+  "email":"Sarah@test.de"
+}
+###
+PUT http://localhost:8080/bibliothek/api/mitglieder
+Content-Type: application/json
+
+{
+  "mitgliedID": 1744,
+  "name": "Sarah",
+  "email":"update@test.de"
+}
+###
+//RegalController
+GET http://localhost:8080/bibliothek/api/regale
+###
+POST http://localhost:8080/bibliothek/api/regale
+Content-Type: application/json
+
+{
+  "standort":"A5"
+}
+###
+PUT http://localhost:8080/bibliothek/api/regale
+Content-Type: application/json
+
+{
+  "regalID": 10,
+  "standort": "update"
+}
+###
+DELETE http://localhost:8080/bibliothek/api/regale/10
+###
+DELETE http://localhost:8080/bibliothek/api/regale/2
+###
+//AusleiheController
+POST http://localhost:8080/bibliothek/api/ausleihen/borrow/2/1
+###
+POST http://localhost:8080/bibliothek/api/ausleihen/borrow/2/1
+###
+GET http://localhost:8080/bibliothek/api/ausleihen/active
+###
+PUT http://localhost:8080/bibliothek/api/ausleihen/return/9
+###
+PUT http://localhost:8080/bibliothek/api/ausleihen/return/999
+###
+DELETE http://localhost:8080/bibliothek/api/exemplare/10

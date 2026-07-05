@@ -2,6 +2,7 @@ package controller;
 
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import model.Regal;
 import service.RegalService;
 
@@ -37,7 +38,14 @@ public class RegalController {
 
     @DELETE
     @Path("/{id}")
-    public void delete(@PathParam("id") Integer id) {
-        service.deleteRegal(id);
+    public Response delete(@PathParam("id") Integer id) {
+        try {
+            service.deleteRegal(id);
+            return Response.noContent().build();
+        } catch (RuntimeException e) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(e.getMessage())
+                    .build();
+        }
     }
 }
