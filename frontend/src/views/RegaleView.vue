@@ -9,6 +9,7 @@
           </div>
           <div class="btn-group">
             <button class="btn btn-info" @click="zeigeExemplare(r.regalID)">Exemplare</button>
+            <button class="btn btn-info" @click="bearbeiten(r)">Bearbeiten</button>
             <button class="btn btn-danger" @click="deleteRegal(r.regalID)">Löschen</button>
           </div>
         </li>
@@ -23,6 +24,15 @@
             </div>
           </li>
         </ul>
+      </div>
+    </div>
+
+    <div v-if="editRegal" class="card">
+      <h3>Regal bearbeiten</h3>
+      <div class="form-row">
+        <input v-model="editRegal.standort" placeholder="Standort"/>
+        <button class="btn btn-primary" @click="updateRegal">Speichern</button>
+        <button class="btn btn-danger" @click="editRegal = null">Abbrechen</button>
       </div>
     </div>
 
@@ -43,6 +53,7 @@ export default {
     return {
       regale: [],
       exemplareProRegal: {},
+      editRegal: null,
       neu: { standort: '' }
     }
   },
@@ -55,6 +66,18 @@ export default {
     regalNameFuer(regalId) {
       const r = this.regale.find(r => r.regalID == regalId)
       return r ? r.standort : `Regal #${regalId}`
+    },
+    bearbeiten(r) {
+      this.editRegal = { ...r }
+    },
+    async updateRegal() {
+      await fetch(`${BASE}/regale`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.editRegal)
+      })
+      this.editRegal = null
+      await this.load()
     },
     async addRegal() {
       await fetch(`${BASE}/regale`, {
